@@ -37,4 +37,5 @@ def main():
         print(f"{test[1]:44s} | {guess if guess is not None else ''}")
 
 if __name__ == "__main__":
-    main()
+    pass
+    # main()
