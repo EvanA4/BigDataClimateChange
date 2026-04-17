@@ -22,7 +22,6 @@ WORLD_DATA = gpd.read_file(
 def get_country(lat, lon):
     point = Point(lon, lat)
     result = WORLD_DATA[WORLD_DATA.contains(point)]
-    
     if not result.empty:
         return result.iloc[0]['NAME']
     return None
@@ -32,10 +31,20 @@ def main():
     tests = list(map(lambda x: x[:-1].split(","), open("mapdata/country_tests.csv").readlines()[1:]))
     print(f"{'Expected':44s} | Guess")
     print("------------------+---------------------------------")
+    nerr = 0
+    nmiss = 0
+    guesses = set()
     for test in tests:
         guess = get_country(float(test[3]), float(test[2]))
+        if guess not in guesses: guesses.add(guess)
         print(f"{test[1]:44s} | {guess if guess is not None else ''}")
+        if not guess:
+            nmiss += 1
+        elif test[1] != guess:
+            nerr += 1
+    print(f"Number of errors: {nerr}")
+    print(f"Number of misses: {nmiss}")
+    print(f"Number of unique: {len(guesses)}")
 
 if __name__ == "__main__":
-    pass
-    # main()
+    main()
