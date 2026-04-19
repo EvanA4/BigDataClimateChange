@@ -1,6 +1,11 @@
 mapdata
     utils
-        -csv
+        -country test csv
         -country shape files
     country
-        
+
+
+250 countries
+for each country:
+    for each year:
+        avg, stddev, min, max daily temperature range

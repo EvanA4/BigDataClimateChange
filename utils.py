@@ -12,8 +12,11 @@ class CountryFinder:
         self._shapefile = gpd.read_file(
             "mapdata/World_Countries.shp"
         )
+        self._cids = dict(
+            [(unidecode(x), idx) for idx, x in enumerate(sorted(list(set(self._shapefile['COUNTRY'].tolist()))))]
+        )
         
-    def find(self, lat, lon):
+    def finds(self, lat, lon):
         wmcoords = self._transformer.transform(lon, lat)
         point = Point(wmcoords[0], wmcoords[1])
         result = self._shapefile[self._shapefile.contains(point)]
@@ -21,17 +24,31 @@ class CountryFinder:
             return unidecode(result.iloc[0]['COUNTRY'])
         return None
 
+    def cid(self, country):
+        return self._cids[unidecode(country)]
+    
+    def findi(self, lat, lon):
+        country = self.finds(lat, lon)
+        return None if not country else self.cid(country)
+
+    def __len__(self):
+        return len(self._cids)
+
+    def __str__(self):
+        return f"CountryFinder for {len(self._cids)} Countries"
+
 def main():
+    cf = CountryFinder()
+    print(cf)
     tests = list(map(lambda x: x[:-1].split(","), open("mapdata/country_tests.csv").readlines()[1:]))
     print(f"{'Expected':44s} | Guess")
     print("------------------+---------------------------------")
     nerr = 0
     nmiss = 0
     guesses = set()
-    cf = CountryFinder()
     for test in tests:
         test[1] = unidecode(test[1])
-        guess = cf.find(float(test[3]), float(test[2]))
+        guess = str(cf.findi(float(test[3]), float(test[2])))
         if guess not in guesses: guesses.add(guess)
         print(f"{test[1]:44s} | {guess if guess is not None else ''}")
         if not guess:
