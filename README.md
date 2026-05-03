@@ -58,11 +58,15 @@ pip install -r requirements.txt
 ```
 
 > [!WARNING]  
-> OpenVisus must be installed as well, but cannot be downloading with `pip` like most others.
+> OpenVisus must be installed as well, but cannot be downloading with `pip` like most others. Also, confirm you have the correct version of `pandas` installed!
 
 ### How to Run
-Optionally, you can directly run `utils.py` to display some of the shapefile's data. If there are any errors, you likely installed the country shape data incorrectly.
+Optionally, you can directly run `utils.py` to display some of the shapefile's data. If there are any errors, you likely installed the country shape data incorrectly. To run this file, enter the following command in the root directory of the project:
 
-You can also optionally run `country-matrix.ipynb`. The result of this notebook is already stored in `cache/cmap.bin`. If you wish to compute this yourself, simply delete that file and run the notebook from the start.
+```
+python utils.py
+```
 
-To run the actual project, open either `temp-gdp.ipynb` or `country-boxes.ipynb`. Simply click the "Restart the kernel and run all cells" button at the top of the Jupyter Notebook editor. Since most of the computation is cached, neither should take longer than a few minutes.
+You can also optionally run `country-matrix.ipynb`. The result of this notebook is already stored in `cache/cmap.bin`. If you wish to compute this yourself, simply delete that file and click the "Restart the kernel and run all cells" button at the top of the Jupyter Notebook editor.
+
+To run the actual project, open either `temp-gdp.ipynb` or `country-boxes.ipynb`. Simply click the "Restart the kernel and run all cells" button at the top of the Jupyter Notebook editor. Since most of the computation is cached for `temp-gdp.ipynb`, it should not take longer than a few minutes. The other takes about 90 minutes to complete.
