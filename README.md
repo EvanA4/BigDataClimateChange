@@ -20,7 +20,7 @@ There are three directories for this project:
 ### Data Prerequisites
 Country shape and GDP data must be downloaded and moved into the project:
 
-For the country shape data, download and extract all files from [this shapefile download](https://www.arcgis.com/home/item.html?id=fa510018bdd044b08fc64d2a16bc680a) into a new directory called `/dependencies/shapes`.
+For the country shape data, download and extract all files from [this shapefile download](https://hub.arcgis.com/datasets/esri::world-countries/explore) into a new directory called `/dependencies/shapes`.
 
 For the GDP data, follow this [International Monetary Fund (IMF) link](https://data.imf.org/en/Data-Explorer?datasetUrn=IMF.RES:WEO(9.0.0)). Click the download button and select "Full dataset". Rename the CSV file to `imf.csv` and place it in `dependencies`.
 
