@@ -48,7 +48,6 @@ dependencies
 | pandas | 2.3.3 |
 | pillow | 12.1.1 |
 | pyproj | 3.7.2 |
-| pyspark | 4.1.0 |
 | shapely | 2.1.2 |
 | unidecode | 1.4.0 |
 
